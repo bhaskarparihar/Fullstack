@@ -1,0 +1,59 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label>Task</label>
+        <input type="text" id="first">
+        <br>
+        <input type="button" value="Add task" onclick="add()">
+    </form>
+    <script>
+        function add(){
+            let taskvalue = document.getElementById("first").value
+            console.log(taskvalue)
+            let li = document.createElement("li");
+            li.textContent = taskvalue;
+            document.getElementById("taskvalue").appendChild(li);
+            document.getElementById("first").value
+        }
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+</head>
+<body>
+    <form>
+        <label>Task</label>
+        <input type="text" id="first">
+        <br>
+        <input type="button" value="Add task" onclick="add()">
+    </form>
+
+    <ul id="taskvalue"></ul>
+
+    <script>
+        function add() {
+            let taskvalue = document.getElementById("first").value;
+            console.log(taskvalue);
+
+            let li = document.createElement("li");
+            li.textContent = taskvalue;
+
+            document.getElementById("taskvalue").appendChild(li);
+
+            document.getElementById("first").value = "";
+        }
+    </script>
+</body>
+</html>
