@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .done {
+            background: lightgreen;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <Label>Task</Label>
+    <input id="taskName" placeholder="Task">
+    <select id="Priority"><option>High</option>
+    <option>Low</option></select>
+    <button id="Addbtn">Add task</button>
+    <div id="TaskList"></div>
+
+    <script>
+        let Tasks = [];
+        document.getElementById("Addbtn").onclick = function(){
+            let name = document.getElementById("taskName").value;
+            let Priority = document.getElementById("Priority").value;
+            Tasks.push({name, Priority, completed : false});
+            showTask();
+        }
+
+        function showTask(){
+            let html = "";
+            Tasks.forEach((t, index) => {
+                html += `
+                <div class="task ${t.completed ? 'done' : ''}">
+                    <b>${t.name}</b>(${t.Priority})
+                    <button onclick="EditTask(${index})">Edit</button>
+                    <button onclick="DeleteTask(${index})">Delete</button>
+                    <button onclick="FinishTask(${index})">Completed</button>
+                    </div>
+                `;
+            });
+            document.getElementById("TaskList").innerHTML = html;
+        }
+        function EditTask(i){
+            let newName = prompt("Enter new Name: ", Tasks[i].name);
+            if(newName){Tasks[i].name = newName};
+            showTask();
+        }
+        function DeleteTask(i){
+            Tasks.splice(i, 1);
+            showTask();
+        }
+        function FinishTask(i){
+            Tasks[i].completed = true;
+            showTask();
+        }
+
+
+    </script>
+</body>
+</html>

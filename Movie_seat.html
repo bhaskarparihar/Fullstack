@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="seats"></div>
+    <p>Selected Seats : <span id="Count">0</span></p>
+    <p>Total price : <span id="Price">0</span></p>
+
+
+    <script>
+        let selected_seats = [];
+        for(let i=1; i<=10;i++){
+            let btn = document.createElement("button");
+            btn.innerText = i;
+            btn.className= "seat";
+            btn.addEventListener("click", () => ToggleSeat(i, btn));
+            document.getElementById("seats").appendChild(btn);
+        }
+
+        function ToggleSeat(num, btn){
+            if(selected_seats.includes(num)){
+                selected_seats = selected_seats.filter(s=>s!=num);
+                btn.style.background="white";
+            }else{
+                selected_seats.push(num);
+                btn.style.background="yellow";
+            }
+            updateUI();
+        }
+
+        function updateUI(){
+            document.getElementById("Count").innerText = selected_seats.length;
+            document.getElementById("Price").innerText = selected_seats.length*150;
+        }
+    </script>
+    
+
+</body>
+</html>

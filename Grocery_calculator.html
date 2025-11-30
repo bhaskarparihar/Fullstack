@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Item name</label>
+    <input id="Item-name" type="text" placeholder="Item-name">
+    <label> Price</label>
+    <input id="Price" type="number", placeholder="Price">
+    <button id="Add_button">Add Item</button><br>
+    <ul id="Item_list"></ul>
+    Total: <span id="Total_Amount">0</span>
+
+    <script>
+        let items=[];
+        document.getElementById("Add_button").addEventListener("click", AddItem);
+        function AddItem(){
+            let name = document.getElementById("Item-name").value;
+            let price = Number(document.getElementById("Price").value);
+            items.push({name, price});
+            showItems();
+            caclulate();
+        }
+        function showItems(){
+            let html = "";
+            items.forEach(i=>{
+                html+= `<li>${i.name} - ${i.price}</li>`
+            });
+            document.getElementById("Item_list").innerHTML = html;
+        }
+
+        function caclulate(){
+            let total = 0;
+            items.forEach(i=> total+=i.price);
+            document.getElementById("Total_Amount").innerHTML = total;
+        }
+
+    </script>
+</body>
+</html>
